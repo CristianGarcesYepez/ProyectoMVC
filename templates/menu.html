@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta de Artículos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/menustyle.css') }}" type="text/css" method="GET">
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="{{ url_for('users_page') }}" method="GET">Usuarios</a></li>
+            <li><a href="articulos.html">Productos</a>
+                <ul class="submenu">
+                    <li><a href="hogar.html">Hogar</a></li>
+                    <li><a href="hogar.html">Jardinería</a></li>
+                    <li><a href="ropa.html">Ropa</a></li>
+                    <li><a href="tecnologia.html">Tecnología</a></li>
+                    <li><a href="herramientas.html">Herramientas</a></li>
+                </ul>
+            </li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="{{ url_for('login_page') }}" method="POST" class="login-access">Iniciar Sesion</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Bienvenido a nuestra tienda</h1>
+        <p>Explore nuestra selección de artículos y encuentre lo que necesita.</p>
+    </main>
+</body>
+</html>

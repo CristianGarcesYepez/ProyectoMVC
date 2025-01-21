@@ -1,0 +1,79 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor del formulario */
+.login-container {
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+}
+
+/* Título */
+.login-container h1 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: #333333;
+}
+
+/* Campos del formulario */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555555;
+    font-size: 0.9em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Botón */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Pie del formulario */
+.form-footer {
+    margin-top: 15px;
+}
+
+.form-footer a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 0.9em;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}

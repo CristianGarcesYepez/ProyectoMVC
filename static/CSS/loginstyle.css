@@ -1,0 +1,151 @@
+/* Reseteo general de márgenes y bordes para todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Asegura que los bordes y rellenos no desborden los elementos */
+}
+
+/* Estilo general del cuerpo */
+body {
+    font-family: Arial, sans-serif; /* Fuente principal para todo el sitio */
+    background: linear-gradient(to bottom right, #6a11cb, #2575fc); /* Gradiente de fondo */
+    height: 100vh; /* Altura completa de la ventana */
+    display: flex; /* Flexbox para centrar contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+/* Contenedor del formulario de login */
+.login-container {
+    background: #fff; /* Fondo blanco para el formulario */
+    width: 350px; /* Ancho del formulario */
+    padding: 30px; /* Espaciado interno */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra suave alrededor del formulario */
+    text-align: center; /* Centra el texto */
+}
+
+/* Título del formulario */
+.login-container h2 {
+    font-family: 'Poppins', 'sans-serif';
+    font-weight: 600; /* Negrita */
+    margin-bottom: 20px; /* Espaciado inferior */
+    font-size: 24px; /* Tamaño del texto */
+    color: #333; /* Color gris oscuro */
+}
+
+/* Contenedor para los campos de entrada */
+.input-group {
+    position: relative; /* Necesario para posicionar el icono */
+    margin-bottom: 15px; /* Espaciado entre grupos */
+}
+
+/* Estilo para los campos de texto */
+.input-group input {
+    width: 100%; /* Ancho completo del campo */
+    padding: 10px 40px 10px 15px; /* Espaciado interno (incluye espacio para el icono) */
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 25px; /* Bordes redondeados */
+    font-size: 14px; /* Tamaño del texto */
+    text-align: center; /* Alinea el texto a la derecha */
+}
+
+/* Icono decorativo en los campos */
+.input-group .icon {
+    position: absolute; /* Permite superponer el icono sobre el campo */
+    top: 50%; /* Centrado vertical */
+    left: 15px; /* Posición desde la izquierda */
+    transform: translateY(-50%); /* Ajusta la posición al centro exacto */
+    color: #bbb; /* Color gris claro */
+    font-size: 18px; /* Tamaño del icono */
+}
+
+/* Estilo del enlace "Forgot password?" */
+.forgot-password {
+    text-align: right; /* Alinea el texto a la derecha */
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+.forgot-password a {
+    color: #6a11cb; /* Color del texto */
+    text-decoration: none; /* Elimina subrayado */
+    font-size: 12px; /* Tamaño pequeño */
+}
+
+/* Botón de inicio de sesión */
+.btn-login {
+    width: 100%; /* Ancho completo del campo */
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradiente en el fondo */
+    color: #fff; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Elimina bordes */
+    border-radius: 25px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño del texto */
+    cursor: pointer; /* Cambia el cursor al pasar */
+    transition: 0.3s ease; /* Transición suave en hover */
+}
+
+/* Efecto hover en el botón */
+.btn-login:hover {
+    opacity: 0.9; /* Reduce la opacidad ligeramente */
+}
+
+/* Sección de redes sociales */
+.or-signup {
+    margin-top: 20px; /* Espaciado superior */
+}
+
+.or-signup p {
+    font-size: 12px; /* Texto pequeño */
+    color: #777; /* Color gris */
+}
+
+/* Estilo para los iconos de redes sociales */
+.social-icons {
+    display: flex; /* Usa flexbox para alinear iconos */
+    justify-content: center; /* Centra horizontalmente */
+    margin: 15px 0; /* Espaciado vertical */
+}
+
+/* Iconos individuales */
+.social-icons a {
+    font-family: FontAwesome; /* Fuente para íconos (si se usa) */
+    color: #fff; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+    margin: 0 10px; /* Espaciado horizontal */
+    width: 40px; /* Tamaño del icono */
+    height: 40px;
+    line-height: 40px; /* Centrado del texto */
+    text-align: center; /* Centrado horizontal */
+    border-radius: 50%; /* Forma circular */
+    background: #ddd; /* Fondo gris claro */
+    font-size: 18px; /* Tamaño del icono */
+    transition: 0.3s ease; /* Transición suave */
+}
+
+/* Efecto hover en iconos */
+.social-icons a:hover {
+    opacity: 0.8; /* Reduce opacidad */
+}
+
+.social-icons a.facebook {
+    background: #3b5998; /* Color de Facebook */
+}
+
+.social-icons a.twitter {
+    background: #55acee; /* Color de Twitter */
+}
+
+.social-icons a.google {
+    background: #dd4b39; /* Color de Google Plus */
+}
+
+/* Enlace para registro */
+.signup-link {
+    color: #6a11cb; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 14px; /* Tamaño del texto */
+    font-weight: bold; /* Negrita */
+    display: inline-block; /* Permite aplicar margen */
+    margin-top: 10px; /* Espaciado superior */
+}

@@ -1,0 +1,134 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 0;
+  background-color: #f4f4f9;
+}
+
+nav {
+  background-color: #c9edef;
+  color: white;
+  padding: 10px 0;
+}
+
+nav h1 {
+  padding: 70px 0;
+  text-align: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  color :#111010
+}
+
+/* Menú lateral */
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #aeedf0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #111010;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Botón hamburguesa */
+.hamburger {
+  position: relative;
+  nav-left: auto;
+  right: 0px;
+  font-size: 30px;
+  color: #333;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+/* Estilos para cuando el menú está abierto */
+.open-sidenav {
+  width: 250px;
+}
+
+/* Estilos para el ícono hamburguesa cuando el menú está abierto */
+.open-sidenav .hamburger {
+  transform: rotate(90deg); /* Cambia la orientación a vertical */
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.menu > li {
+  position: relative;
+  margin: 0 20px;
+}
+.menu > li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  display: block;
+}
+.menu > li a:hover {
+  color: #f0a500;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f0a500;
+  color: white;
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Estilos para el botón */
+.agg-user {
+  width: 10%;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  background-color: #18c704;
+}
+
+/*Cambiar color al posesionar cursor*/
+.agg-user:hover {
+  background-color: #119b02;
+}
+
+.btn-edit{
+  color: #e0f000;
+}
+
+.btn-delete {
+  color: #f01000;
+}

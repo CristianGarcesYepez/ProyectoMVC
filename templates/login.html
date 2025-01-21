@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Vincula el archivo CSS externo -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/loginstyle.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Contenedor principal para el formulario de inicio de sesión -->
+    <div class="login-container">
+        <!-- Título del formulario -->
+        <h2>Inicio de Sesión</h2>
+        <!-- Formulario para capturar datos de usuario -->
+        <form action="{{ url_for('menu_page') }}" method="POST">
+            <!-- Grupo de entrada para el nombre de usuario -->
+            <div class="input-group">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <span class="icon"><i class="fas fa-user"></i></span>
+            </div>
+            <!-- Grupo de entrada para la contraseña -->
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span class="icon"><i class="fas fa-lock"></i></span>
+            </div>
+            <!-- Enlace para recuperar la contraseña -->
+            <div class="forgot-password">
+                <a href="#">Forgot password?</a>
+            </div>
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="btn-login">LOGIN</button>
+            <!-- Sección de opciones adicionales para registro o redes sociales -->
+            <div class="or-signup">
+                <p>Sign Up Using</p>
+                <!-- Íconos para redes sociales -->
+                <div class="social-icons">
+                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="google"><i class="fab fa-google"></i></a>
+                </div>
+                <p>Or</p>
+                <!-- Enlace para registrarse -->
+                <a href="{{url_for('register_page')}}" method="GET" class="signup-link">SIGN UP</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

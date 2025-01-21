@@ -1,0 +1,59 @@
+/* Estilo general del cuerpo */
+body {
+    font-family: 'Arial', sans-serif; /* Fuente principal para todo el sitio */
+    background: linear-gradient(to bottom right, #6a11cb, #2575fc); /* Gradiente de fondo */
+    height: 100vh; /* Altura completa de la ventana */
+    display: flex; /* Flexbox para centrar contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+h2{
+    font-family: 'Poppins', 'sans-serif';
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: #333333;
+}
+
+.main-container {
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #70b1f7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/*Cambiar color al posesionar cursor*/
+button:hover {
+    background-color: #0056b3;
+}
+
+.btn-exit {
+    background-color: #dc3545;
+    width: 40%; /* Ancho completo del campo */
+}
+
+/*Cambiar color al posesionar cursor*/
+.btn-exit:hover {
+    background-color: #cd4f21;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555555;
+    font-size: 0.9em;
+}

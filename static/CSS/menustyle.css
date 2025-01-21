@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+nav {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+.menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+.menu > li {
+    position: relative;
+    margin: 0 20px;
+}
+.menu > li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    display: block;
+}
+.menu > li a:hover {
+    color: #f0a500;
+}
+/* Estilos para el submenú */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 150px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.submenu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+}
+.submenu li a:hover {
+    background-color: #555;
+    color: #f0a500;
+}
+/* Mostrar el submenú al pasar el cursor */
+.menu > li:hover .submenu {
+    display: block;
+}
+
+.login-access {
+    position: right; /* Posición fija en la esquina superior derecha */
+    top: 10px; /* Distancia desde el borde superior */
+    right: 0px; /* Distancia desde el borde derecho */
+    background-color: #f0a500; /* Fondo del botón/enlace */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 16px; /* Tamaño de fuente */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+.login-access:hover {
+    background-color: #d18e00; /* Cambiar el color al pasar el cursor */
+}

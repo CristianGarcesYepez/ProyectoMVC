@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/mainstyle.css') }}">
+</head>
+<body>
+    <div class=main-container>
+        <h2>Menu Principal</h2>
+        <form action="{{ url_for('users_page') }}" method="post">
+            <div class="form-group">
+                <button type="submit">Ingreso</button>
+                <button type="submit">Consultas</button>
+            </div>      
+        </form>
+        <a href="{{ url_for('login_page') }}" method="GET">
+            <button type="button" class="btn-exit">Salir</button>
+        </a>
+    </div>   
+</body>
+</html>
