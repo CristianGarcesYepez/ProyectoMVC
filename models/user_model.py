@@ -11,6 +11,13 @@ class UsuarioModel:
         self.conexion = ConexionDB()
         self.conexion.conectar()
 
+    def validar_usuario(self, user_name, password):
+        cursor = self.conexion.connection.cursor(dictionary=True)
+        cursor.execute('SELECT * FROM usuarios WHERE nombre_usuario = %s AND clave_usuario = %s', (user_name, password))
+        user = cursor.fetchone()
+        cursor.close()
+        return user
+
     def get_user_by_id(self, user_id):
         cursor = self.conexion.connection.cursor(dictionary=True)
         cursor.execute('SELECT * FROM usuarios WHERE id = %s', (user_id,))

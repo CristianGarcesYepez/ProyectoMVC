@@ -13,8 +13,12 @@
     <div class="login-container">
         <!-- Título del formulario -->
         <h2>Inicio de Sesión</h2>
+        <!-- Imagen logo-->
+        <div class="logo">
+            <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="logo">
+        </div>
         <!-- Formulario para capturar datos de usuario -->
-        <form action="{{ url_for('menu_page') }}" method="POST">
+        <form action="{{ url_for('dashboard') }}" method="POST">
             <!-- Grupo de entrada para el nombre de usuario -->
             <div class="input-group">
                 <input type="text" id="username" name="username" placeholder="Username" required>
@@ -40,7 +44,7 @@
                     <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
                     <a href="#" class="google"><i class="fab fa-google"></i></a>
                 </div>
-                <p>Or</p>
+                <p>O</p>
                 <!-- Enlace para registrarse -->
                 <a href="{{url_for('register_page')}}" method="GET" class="signup-link">SIGN UP</a>
             </div>

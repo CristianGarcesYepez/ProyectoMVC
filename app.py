@@ -1,7 +1,8 @@
 import os
-from flask import Flask, render_template, request, url_for, redirect, flash
+from flask import Flask, render_template, request, url_for, redirect, flash, session
 from controllers.user_controller import UsuarioController
 from models.user_model import UsuarioModel
+from controllers.login_controller import AuthController
 
 app = Flask(__name__, static_folder='static')
 
@@ -21,11 +22,7 @@ def add_header(response):
 
 @app.route("/", methods=["GET", "POST"])
 def home_page():
-    return render_template("menu.html")
-
-@app.route("/menu", methods=["GET", "POST"])
-def menu_page():   
-    return render_template("menu.html")
+    return render_template("login.html")
     
 @app.route("/users", methods=["GET"])
 def users_page():
@@ -103,6 +100,21 @@ def eliminar_usuario(user_id):
         flash(f'Error al eliminar el usuario {id}', 'error')
     
     return redirect(url_for('users_page'))  # Redirige a la página donde se listan los usuarios
+
+#-------------------LOGIN-------------------
+@app.route("/dashboard", methods=["GET", "POST"])
+def dashboard():
+    if request.method == "POST":
+        # Obtén los datos enviados desde el formulario
+        username = request.form.get("username")
+        password = request.form.get("password")
+        
+        authcontroller = AuthController()
+        # Llama al controlador para manejar la lógica
+        return authcontroller.login(username, password)
+    
+    # Si es un GET, envia al menu principal
+    return render_template("menu.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

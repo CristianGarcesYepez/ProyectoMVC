@@ -15,6 +15,18 @@ body {
     align-items: center; /* Centra verticalmente */
 }
 
+/* Estilos para el logo */
+.logo {
+    margin-bottom: 20px;
+}
+
+.logo img {
+    max-width: 150px; /* Ajusta el ancho máximo del logo */
+    height: auto;     /* Mantiene la proporción de la imagen */
+    display: block;   /* Asegura que la imagen sea un bloque */
+    margin: 0 auto;   /* Centra la imagen horizontalmente */
+}
+
 /* Contenedor del formulario de login */
 .login-container {
     background: #fff; /* Fondo blanco para el formulario */
