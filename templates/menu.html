@@ -9,7 +9,6 @@
 <body>
     <nav>
         <ul class="menu">
-            <li><a href="index.html">Inicio</a></li>
             <li><a href="{{ url_for('users_page') }}" method="GET">Usuarios</a></li>
             <li><a href="articulos.html">Productos</a>
                 <ul class="submenu">
@@ -28,6 +27,10 @@
     <main>
         <h1>Bienvenido a nuestra tienda</h1>
         <p>Explore nuestra selección de artículos y encuentre lo que necesita.</p>
+         <!-- Imagen logo-->
+         <div class="logo">
+            <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="logo">
+        </div>
     </main>
 </body>
 </html>

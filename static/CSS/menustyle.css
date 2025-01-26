@@ -74,3 +74,10 @@ nav {
 .login-access:hover {
     background-color: #d18e00; /* Cambiar el color al pasar el cursor */
 }
+
+main .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}

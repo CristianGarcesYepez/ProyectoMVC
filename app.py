@@ -21,18 +21,22 @@ def add_header(response):
     return response
 
 @app.route("/", methods=["GET", "POST"])
-def home_page():
+def first_page():
     return render_template("login.html")
+
+@app.route("/login", methods=["GET", "POST"])
+def login_page():
+    return render_template("login.html")
+
+@app.route("/home", methods=["GET", "POST"])
+def home_page():
+    return render_template("menu.html")
     
 @app.route("/users", methods=["GET"])
 def users_page():
     usuarios = user_model.obtener_todos()
     return render_template("user.html", usuarios=usuarios)
     
-@app.route("/login", methods=["GET", "POST"])
-def login_page():
-    return render_template("login.html")
-
 @app.route("/register", methods=["GET", "POST"])
 def register_page():
     return render_template("insert_user.html")
