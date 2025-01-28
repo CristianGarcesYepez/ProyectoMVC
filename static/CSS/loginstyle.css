@@ -42,6 +42,8 @@ body {
     font-family: 'Helvetica', 'san-serif';
     font-weight: 300; /* Negrita */
     margin-bottom: 40px; /* Espaciado inferior */
+    position: relative; /* Necesario para posicionar el icono */
+    top: -20px; /* Ajusta la posición del texto */
     font-size: 20px; /* Tamaño del texto */
     color: #333; /* Color gris oscuro */
 }

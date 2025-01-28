@@ -3,11 +3,109 @@ from flask import Flask, render_template, request, url_for, redirect, flash, ses
 from controllers.user_controller import UsuarioController
 from models.user_model import UsuarioModel
 from controllers.login_controller import AuthController
+from flask dance.contrib.google import make_google_blueprint, google
+from flask dance.contrib.facebook import make_facebook_blueprint, facebook
+from flask dance.contrib.twitter import make_twitter_blueprint, twitter
+from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 
 app = Flask(__name__, static_folder='static')
 
 app.secret_key = "mi_clave_secreta_unica_y_segura"
 
+# Configuración de flask-login
+login_manager = LoginManager()
+login_manager.login_view = "login"
+
+class User(UserMixin):
+    def __init__(self, id, name, email):
+        self.id = id
+        self.name = name                
+        self.email = email
+#Diccionario para almacenar usuarios en sesión (solo para pruebas, usa DB en producción)
+users = {}
+
+@login_manager.user_loader
+def load_user(user_id):
+    return users.get(user_id)
+
+# Configuración OAuth con Google
+google_bp = make_google_blueprint(client_id="TU_GOOGLE_CLIENT_ID",
+                                  client_secret="TU_GOOGLE_CLIENT_SECRET",
+                                  redirect_to="google_login")
+app.register_blueprint(google_bp, url_prefix="/login")
+
+# Configuración OAuth con Facebook
+facebook_bp = make_facebook_blueprint(client_id="TU_FACEBOOK_CLIENT_ID",
+                                       client_secret="TU_FACEBOOK_CLIENT_SECRET",
+                                       redirect_to="facebook_login")
+app.register_blueprint(facebook_bp, url_prefix="/login")
+
+# Configuración OAuth con Twitter
+twitter_bp = make_twitter_blueprint(api_key="TU_TWITTER_API_KEY",
+                                    api_secret="TU_TWITTER_API_SECRET",
+                                    redirect_to="twitter_login")
+app.register_blueprint(twitter_bp, url_prefix="/login")
+
+@app.route('/google_login')
+def google_login():
+    if not google_bp.session.authorized:
+        return redirect(url_for("google.login"))
+    
+    resp = google_bp.session.get("/oauth2/v2/userinfo")
+    user_info = resp.json()
+    
+    user = User(id=user_info["id"], name=user_info["name"], email=user_info["email"])
+    users[user.id] = user
+    login_user(user)
+    
+    flash("Inicio de sesión con Google exitoso", "success")
+    return redirect(url_for("dashboard"))
+
+@app.route('/facebook_login')
+def facebook_login():
+    if not facebook_bp.session.authorized:
+        return redirect(url_for("facebook.login"))
+    
+    resp = facebook_bp.session.get("/me?fields=id,name,email")
+    user_info = resp.json()
+
+    user = User(id=user_info["id"], name=user_info["name"], email=user_info.get("email", ""))
+    users[user.id] = user
+    login_user(user)
+
+    flash("Inicio de sesión con Facebook exitoso", "success")
+    return redirect(url_for("dashboard"))
+
+@app.route('/twitter_login')
+def twitter_login():
+    if not twitter_bp.session.authorized:
+        return redirect(url_for("twitter.login"))
+    
+    resp = twitter_bp.session.get("account/verify_credentials.json")
+    user_info = resp.json()
+    
+    user = User(id=user_info["id_str"], name=user_info["name"], email=user_info.get("email", ""))
+    users[user.id] = user
+    login_user(user)
+
+    flash("Inicio de sesión con Twitter exitoso", "success")
+    return redirect(url_for("dashboard"))
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return f"Bienvenido {current_user.name}! <a href='/logout'>Cerrar sesión</a>"
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash("Has cerrado sesión.", "info")
+    return redirect(url_for("home"))
+
+@app.route('/')
+def home():
+    return render_template("index.html")
 
 # Instancia del controlador
 user_controller = UsuarioController()
