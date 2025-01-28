@@ -38,11 +38,11 @@ body {
 }
 
 /* Título del formulario */
-.login-container h2 {
-    font-family: 'Poppins', 'sans-serif';
-    font-weight: 600; /* Negrita */
-    margin-bottom: 20px; /* Espaciado inferior */
-    font-size: 24px; /* Tamaño del texto */
+.login-titulo {
+    font-family: 'Helvetica', 'san-serif';
+    font-weight: 300; /* Negrita */
+    margin-bottom: 40px; /* Espaciado inferior */
+    font-size: 20px; /* Tamaño del texto */
     color: #333; /* Color gris oscuro */
 }
 
