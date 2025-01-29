@@ -3,9 +3,9 @@ from flask import Flask, render_template, request, url_for, redirect, flash, ses
 from controllers.user_controller import UsuarioController
 from models.user_model import UsuarioModel
 from controllers.login_controller import AuthController
-from flask dance.contrib.google import make_google_blueprint, google
-from flask dance.contrib.facebook import make_facebook_blueprint, facebook
-from flask dance.contrib.twitter import make_twitter_blueprint, twitter
+from flask_dance.contrib.google import make_google_blueprint, google
+from flask_dance.contrib.facebook import make_facebook_blueprint, facebook
+from flask_dance.contrib.twitter import make_twitter_blueprint, twitter
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 
 app = Flask(__name__, static_folder='static')
