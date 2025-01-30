@@ -4,9 +4,9 @@ body {
     padding: 0;
 }
 nav {
-    background-color: #333;
+    background-color: #ffa500;
     color: white;
-    padding: 10px 0;
+    padding: 25px 0;
 }
 .menu {
     display: flex;
@@ -77,7 +77,10 @@ nav {
 
 main .logo {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 20px;
+    padding: 5px;
+    object-fit: contain;
+    cursor: pointer;
+    margin-top: -127px;
 }

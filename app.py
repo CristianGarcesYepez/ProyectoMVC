@@ -21,7 +21,7 @@ def add_header(response):
 
 @app.route("/", methods=["GET", "POST"])
 def first_page():
-    return render_template("login.html")
+    return render_template("menu.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login_page():
