@@ -39,15 +39,15 @@ nav {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #444;
+    background-color: #fff;
     list-style: none;
     margin: 0;
     padding: 0;
     min-width: 150px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .submenu li a {
-    color: white;
+    color: #333;
     text-decoration: none;
     font-size: 16px;
     padding: 10px;
@@ -59,6 +59,35 @@ nav {
 }
 /* Mostrar el submenú al pasar el cursor */
 .menu > li:hover .submenu {
+    display: block;
+}
+
+.menu-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.menu-button:hover {
+    background-color: #555;
+}
+
+.submenu li {
+    padding: 10px;
+}
+
+.submenu li a img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.menu-button:hover + .submenu,
+.submenu:hover {
     display: block;
 }
 

@@ -125,5 +125,9 @@ def search():
     # Aquí puedes agregar la lógica para manejar la búsqueda
     return render_template("search_results.html", query=query)
 
+@app.route("/hogar.html")
+def hogar_page():
+    return render_template("hogar.html")
+
 if __name__ == "__main__":
     app.run(debug=True)

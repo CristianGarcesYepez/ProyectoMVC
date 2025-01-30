@@ -10,13 +10,14 @@
     <nav>
         <ul class="menu">
             <li><a href="{{ url_for('users_page') }}" method="GET">Usuarios</a></li>
-            <li><a href="articulos.html">Productos</a>
+            <li>
+                <a href="articulos.html" class="menu-button">Productos</a>
                 <ul class="submenu">
-                    <li><a href="hogar.html">Hogar</a></li>
-                    <li><a href="hogar.html">Jardinería</a></li>
-                    <li><a href="ropa.html">Ropa</a></li>
-                    <li><a href="tecnologia.html">Tecnología</a></li>
-                    <li><a href="herramientas.html">Herramientas</a></li>
+                    <li><a href="hogar.html"><img src="{{ url_for('static', filename='icons/hogar.png') }}" alt="Hogar Icono"> Hogar</a></li>
+                    <li><a href="jardineria.html"><img src="{{ url_for('static', filename='icons/jardineria.png') }}" alt="Jardinería Icono"> Jardinería</a></li>
+                    <li><a href="ropa.html"><img src="{{ url_for('static', filename='icons/ropa.png') }}" alt="Ropa Icono"> Ropa</a></li>
+                    <li><a href="tecnologia.html"><img src="{{ url_for('static', filename='icons/tecnologia.png') }}" alt="Tecnología Icono"> Tecnología</a></li>
+                    <li><a href="herramientas.html"><img src="{{ url_for('static', filename='icons/herramientas.png') }}" alt="Herramientas Icono"> Herramientas</a></li>
                 </ul>
             </li>
             <li><a href="contacto.html">Contacto</a></li>
@@ -37,5 +38,21 @@
             <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="logo" weight="200" height="200">
         </div>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.querySelector('.menu-button');
+            const submenu = document.querySelector('.submenu');
+
+            menuButton.addEventListener('click', function() {
+                submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!menuButton.contains(event.target) && !submenu.contains(event.target)) {
+                    submenu.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
