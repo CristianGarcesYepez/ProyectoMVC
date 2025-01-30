@@ -3,56 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venta de Artículos</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/menustyle.css') }}" type="text/css" method="GET">
+    <title>CRIMASE - Todo para tu mundo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/menustyle.css') }}">
 </head>
 <body>
+
+    <!-- Barra de navegación -->
     <nav>
-        <ul class="menu">
-            <li><a href="{{ url_for('users_page') }}" method="GET">Usuarios</a></li>
-            <li>
-                <a href="articulos.html" class="menu-button">Productos</a>
-                <ul class="submenu">
-                    <li><a href="hogar.html"><img src="{{ url_for('static', filename='icons/hogar.png') }}" alt="Hogar Icono"> Hogar</a></li>
-                    <li><a href="jardineria.html"><img src="{{ url_for('static', filename='icons/jardineria.png') }}" alt="Jardinería Icono"> Jardinería</a></li>
-                    <li><a href="ropa.html"><img src="{{ url_for('static', filename='icons/ropa.png') }}" alt="Ropa Icono"> Ropa</a></li>
-                    <li><a href="tecnologia.html"><img src="{{ url_for('static', filename='icons/tecnologia.png') }}" alt="Tecnología Icono"> Tecnología</a></li>
-                    <li><a href="herramientas.html"><img src="{{ url_for('static', filename='icons/herramientas.png') }}" alt="Herramientas Icono"> Herramientas</a></li>
-                </ul>
-            </li>
-            <li><a href="contacto.html">Contacto</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="{{ url_for('login_page') }}" method="POST" class="login-access">Cerrar Sesion</a></li>
-        </ul>
-            <!-- Barra de búsqueda -->
-            <form class="search-form" action="{{ url_for('search') }}" method="GET">
-                <input type="text" name="query" placeholder="Buscar...">
-                <button type="submit"><img src="{{ url_for('static', filename='CSS/recursos/lupa.jpg') }}" alt="Buscar"></button>
-            </form>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="Logo" width="100">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar...">
+            <button type="submit"><img src="{{ url_for('static', filename='CSS/recursos/lupa.jpg') }}" alt="Buscar" width="20"></button>
+        </div>
+        <div class="cart-icon">🛒</div>
+        <a href="{{ url_for('login_page') }}" class="login-button">INICIAR SESIÓN</a>
     </nav>
+
+    <!-- Botón de categorías -->
+    <button class="category-button">Categorías</button>
+
+    <!-- Contenido principal -->
     <main>
         <h1>LOS MEJORES PRECIOS DEL MERCADO</h1>
-        <p>VISITANOS EN NUESTRAS REDES</p>
-         <!-- Imagen logo-->
-         <div class="logo">
-            <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="logo" weight="200" height="200">
-        </div>
+        <p>VISÍTANOS EN NUESTRAS REDES</p>
     </main>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuButton = document.querySelector('.menu-button');
-            const submenu = document.querySelector('.submenu');
 
-            menuButton.addEventListener('click', function() {
-                submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-            });
+    <!-- Footer -->
+    <footer>
+        <div class="footer-section">
+            <h4>Categorías</h4>
+            <a href="#">Hogar</a>
+            <a href="#">Jardinería</a>
+            <a href="#">Ropa</a>
+            <a href="#">Tecnología</a>
+            <a href="#">Herramientas</a>
+        </div>
+        <div class="footer-section">
+            <h4>Nosotros</h4>
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Política de Privacidad</a>
+            <a href="#">Política de Cookies</a>
+        </div>
+        <div class="footer-section">
+            <h4>Contacto</h4>
+            <p>Teléf: (04)-4536937</p>
+            <p>WhatsApp: +593 9856237001</p>
+        </div>
+    </footer>
 
-            document.addEventListener('click', function(event) {
-                if (!menuButton.contains(event.target) && !submenu.contains(event.target)) {
-                    submenu.style.display = 'none';
-                }
-            });
-        });
-    </script>
 </body>
 </html>

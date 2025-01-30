@@ -129,5 +129,21 @@ def search():
 def hogar_page():
     return render_template("hogar.html")
 
+@app.route("/jardineria.html")
+def jardineria_page():
+    return render_template("jardineria.html")
+
+@app.route("/ropa.html")
+def ropa_page():
+    return render_template("ropa.html")
+
+@app.route("/tecnologia.html")
+def tecnologia_page():
+    return render_template("tecnologia.html")
+
+@app.route("/herramientas.html")
+def herramientas_page():
+    return render_template("herramientas.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
