@@ -11,7 +11,7 @@
     <!-- Barra de navegación -->
     <nav>
         <div class="logo">
-            <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="Logo" width="100">
+            <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="Logo" width="200"  height="200">
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Buscar...">
@@ -20,6 +20,8 @@
         <div class="cart-icon">🛒</div>
         <a href="{{ url_for('login_page') }}" class="login-button">INICIAR SESIÓN</a>
     </nav>
+    <!-- Imagen debajo de la barra de navegación -->
+    <img src="CSS/recursos/chicos.jpg" alt="Descripción de la imagen" class="navbar-image">
 
     <!-- Botón de categorías -->
     <button class="category-button">Categorías</button>
