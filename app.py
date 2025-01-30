@@ -29,13 +29,13 @@ def login_page():
 
 @app.route("/home", methods=["GET", "POST"])
 def home_page():
-    return render_template("home.html")
+    return render_template("menu.html")
 
 @app.route("/users", methods=["GET"])
 def users_page():
     usuarios = user_model.obtener_todos()
     return render_template("user.html", usuarios=usuarios)
-    
+
 @app.route("/register", methods=["GET", "POST"])
 def register_page():
     return render_template("insert_user.html")
@@ -48,11 +48,11 @@ def insert_user():
         correo = request.form.get("email")
         nombre_usuario = request.form.get("username")
         clave_usuario = request.form.get("password")
-        
+
         if not (nombre and apellido and correo and nombre_usuario and clave_usuario):
             flash("Todos los campos son obligatorios", "error")
             return redirect(url_for("register_page"))
-        
+
         user_model.agregar(nombre, apellido, correo, nombre_usuario, clave_usuario)
         flash("Usuario agregado correctamente", "success")
         return redirect(url_for("users_page"))
@@ -96,18 +96,28 @@ def update_user(user_id):
 def eliminar_usuario(user_id):
     # Lógica para actualizar el estado del usuario a inactivo en la base de datos
     exito = user_model.eliminar_logico(user_id)  # Cambiar estado a 0 (inactivo)
-    
+
     if exito:
         flash(f'Usuario {id} eliminado exitosamente', 'success')
     else:
         flash(f'Error al eliminar el usuario {id}', 'error')
-    
+
     return redirect(url_for('users_page'))  # Redirige a la página donde se listan los usuarios
 
 #-------------------LOGIN-------------------
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
-    return render_template("dashboard.html")
+    if request.method == "POST":
+        # Obtén los datos enviados desde el formulario
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        authcontroller = AuthController()
+        # Llama al controlador para manejar la lógica
+        return authcontroller.login(username, password)
+
+    # Si es un GET, envia al menu principal
+    return render_template("menu.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
