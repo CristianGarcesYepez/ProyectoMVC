@@ -11,20 +11,24 @@
     <!-- Barra de navegación -->
     <nav>
         <div class="logo">
-            <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="Logo" width="200"  height="200">
+            <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="Logo" width="200" height="200">
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Buscar...">
-            <button type="submit"><img src="{{ url_for('static', filename='CSS/recursos/lupa.jpg') }}" alt="Buscar" width="20"></button>
+            <button type="submit"><img src="{{ url_for('static', filename='recursos/lupa.jpg') }}" alt="Buscar" width="20"></button>
         </div>
-        <div class="cart-icon">🛒</div>
+        <div class="cart-icon">
+            <img src="{{ url_for('static', filename='recursos/carrito.png') }}" alt="Carrito" width="40" height="40">
+        </div>
+        <div class="buttons-container">
+            <button class="category-button">Categorías</button>
+            <a class="button-usuarios" href="{{ url_for('users_page') }}">Usuarios</a>
+        </div>
         <a href="{{ url_for('login_page') }}" class="login-button">INICIAR SESIÓN</a>
     </nav>
+    
     <!-- Imagen debajo de la barra de navegación -->
-    <img src="CSS/recursos/chicos.jpg" alt="Descripción de la imagen" class="navbar-image">
-
-    <!-- Botón de categorías -->
-    <button class="category-button">Categorías</button>
+    <img src="{{ url_for('static', filename='recursos/chicos.jpg') }}" alt="Descripción de la imagen" class="navbar-image">
 
     <!-- Contenido principal -->
     <main>
@@ -34,26 +38,35 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-section">
-            <h4>Categorías</h4>
-            <a href="#">Hogar</a>
-            <a href="#">Jardinería</a>
-            <a href="#">Ropa</a>
-            <a href="#">Tecnología</a>
-            <a href="#">Herramientas</a>
-        </div>
-        <div class="footer-section">
-            <h4>Nosotros</h4>
-            <a href="#">Términos y Condiciones</a>
-            <a href="#">Política de Privacidad</a>
-            <a href="#">Política de Cookies</a>
-        </div>
-        <div class="footer-section">
-            <h4>Contacto</h4>
-            <p>Teléf: (04)-4536937</p>
-            <p>WhatsApp: +593 9856237001</p>
+        <p>&copy; 2025 CRIMASE. Todos los derechos reservados.</p>
+        <div class="footer-columns">
+            <div class="footer-redes footer-section">
+                <h4>Redes Sociales</h4>
+                <a href="https://www.facebook.com/"><img src="{{ url_for('static', filename='recursos/facebook.png') }}" alt="Facebook" width="30" height="30"></a>
+                <a href="https://www.instagram.com/"><img src="{{ url_for('static', filename='recursos/instagram.png') }}" alt="Instagram" width="30" height="30"></a>
+                <a href="https://www.twitter.com/"><img src="{{ url_for('static', filename='recursos/twitter.png') }}" alt="Twitter" width="30" height="30"></a>
+                <a href="https://www.youtube.com/"><img src="{{ url_for('static', filename='recursos/youtube.png') }}" alt="YouTube" width="30" height="30"></a>
+            </div>
+            <div class="footer-categorias footer-section">
+                <h4>Categorías</h4>
+                <a href="#">Hogar</a>
+                <a href="#">Jardinería</a>
+                <a href="#">Ropa</a>
+                <a href="#">Tecnología</a>
+                <a href="#">Herramientas</a>
+            </div>
+            <div class="footer-nosotros footer-section">
+                <h4>Nosotros</h4>
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Política de Cookies</a>
+            </div>
+            <div class="footer-contacto footer-section">
+                <h4>Contacto</h4>
+                <p>Teléf: (04)-4536937</p>
+                <p>WhatsApp: +593 9856237001</p>
+            </div>
         </div>
     </footer>
-
 </body>
 </html>
