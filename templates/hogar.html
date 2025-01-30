@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos para el Hogar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/hogarstyle.css') }}" type="text/css">
+</head>
+<body>
+    <main>
+        <h1>Productos para el Hogar</h1>
+        <section class="productos">
+            <article class="producto">
+                <img src="{{ url_for('static', filename='CSS/oster.jpg') }}" alt="Producto 1">
+                <h2>Licuadora clásica Oster® cromada con perilla ergonómica de 3 velocidades BLST4655</h2>
+                <p>Las licuadoras Oster® son reconocidas por su eficiencia y durabilidad. Ahora, la licuadora clásica Oster® en cromo, reinventada y modernizada con perilla, te brinda una experiencia aún mejor. Su potente motor seis veces más duradero** con 1000 W de potencia**** te ayuda a preparar deliciosas y saludables recetas. Tiene un novedoso diseño y sus controles son ergonómicos.</p>
+                <p>Precio: $90.00</p>
+            </article>
+            <article class="producto">
+                <img src="{{ url_for('static', filename='images/producto2.jpg') }}" alt="Producto 2">
+                <h2>Producto 2</h2>
+                <p>Descripción del producto 2.</p>
+                <p>Precio: $20.00</p>
+            </article>
+            <!-- Agrega más productos según sea necesario -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Venta de Artículos. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
