@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Venta de Artículos</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/menustyle.css') }}" type="text/css" method="GET">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/menustyle.css') }}" type="text/css">
 </head>
 <body>
     <nav>
         <ul class="menu">
-            <li><a href="{{ url_for('users_page') }}" method="GET">Usuarios</a></li>
+            <li><a href="{{ url_for('users_page') }}">Usuarios</a></li>
             <li><a href="articulos.html">Productos</a>
                 <ul class="submenu">
                     <li><a href="hogar.html">Hogar</a></li>
-                    <li><a href="hogar.html">Jardinería</a></li>
+                    <li><a href="jardineria.html">Jardinería</a></li>
                     <li><a href="ropa.html">Ropa</a></li>
                     <li><a href="tecnologia.html">Tecnología</a></li>
                     <li><a href="herramientas.html">Herramientas</a></li>
@@ -21,19 +21,21 @@
             </li>
             <li><a href="contacto.html">Contacto</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="{{ url_for('login_page') }}" method="POST" class="login-access">Cerrar Sesion</a></li>
+            <li><a href="{{ url_for('login_page') }}" class="login-access">Cerrar Sesion</a></li>
         </ul>
+        <!-- Barra de búsqueda -->
+        <form class="search-form" action="{{ url_for('search') }}" method="GET">
+            <input type="text" name="query" placeholder="Buscar...">
+            <button type="submit"><img src="{{ url_for('static', filename='images/search-icon.png') }}" alt="Buscar"></button>
+        </form>
     </nav>
     <main>
         <h1>¡BIENVENIDO!</h1>
         <p>Explore nuestra selección de artículos y encuentre lo que necesita.</p>
-         <!-- Imagen logo-->
-         <div class="logo">
-                <a href="menu.html" class="logo">
-                <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="logo" width="200" height="200">    
-                </div>
-                </a>
-
+        <!-- Imagen logo -->
+        <div class="logo">
+            <img src="{{ url_for('static', filename='CSS/recursos/CRIMASE.png') }}" alt="Logo">
+        </div>
     </main>
 </body>
 </html>

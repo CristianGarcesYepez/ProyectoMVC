@@ -7,6 +7,9 @@ nav {
     background-color: #ffa500;
     color: white;
     padding: 25px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .menu {
     display: flex;
@@ -83,4 +86,32 @@ main .logo {
     object-fit: contain;
     cursor: pointer;
     margin-top: -127px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    margin: 0 auto; /* Centra horizontalmente */
+}
+
+.search-form input[type="text"] {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-form button {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-left: none;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+}
+
+.search-form button img {
+    width: 20px;
+    height: 20px;
 }

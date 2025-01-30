@@ -119,5 +119,11 @@ def dashboard():
     # Si es un GET, envia al menu principal
     return render_template("menu.html")
 
+@app.route("/search", methods=["GET"])
+def search():
+    query = request.args.get('query')
+    # Aquí puedes agregar la lógica para manejar la búsqueda
+    return render_template("search_results.html", query=query)
+
 if __name__ == "__main__":
     app.run(debug=True)
