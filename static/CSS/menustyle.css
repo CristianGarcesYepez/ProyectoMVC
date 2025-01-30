@@ -36,6 +36,7 @@ nav {
     outline: none;
     padding: 5px;
     font-size: 16px;
+    width: 500px; /* Ajusta este valor para hacer más ancha la entrada de búsqueda */
 }
 
 .search-bar button {
@@ -51,6 +52,11 @@ nav {
 
 .cart-icon {
     margin-left: 10px;
+}
+
+.cart-icon a {
+    display: flex;
+    align-items: center;
 }
 
 .buttons-container {
@@ -71,6 +77,39 @@ nav {
     text-decoration: none;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .category-button {
+    background-color: #3e8e41;
+}
+
 .cart-icon img {
     width: 40px;
     height: 40px;
@@ -89,7 +128,7 @@ nav {
 .navbar-image {
     width: 100%;  /* La imagen ocupará el ancho completo de la página */
     height: auto;  /* Mantiene la proporción de la imagen */
-    margin-top: 10px;  /* Espacio entre la barra de navegación y la imagen */
+    margin-top: 0px;  /* Espacio entre la barra de navegación y la imagen */
 }
 
 /* Footer */
@@ -131,4 +170,10 @@ footer {
 
 .footer-section a:hover {
     text-decoration: underline;
+}
+
+.footer-copy {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
 }

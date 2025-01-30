@@ -145,5 +145,9 @@ def tecnologia_page():
 def herramientas_page():
     return render_template("herramientas.html")
 
+@app.route("/carrito")
+def carrito_page():
+    return render_template("carrito.html")
+
 if __name__ == "__main__":
     app.run(debug=True)

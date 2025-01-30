@@ -18,10 +18,21 @@
             <button type="submit"><img src="{{ url_for('static', filename='recursos/lupa.jpg') }}" alt="Buscar" width="20"></button>
         </div>
         <div class="cart-icon">
-            <img src="{{ url_for('static', filename='recursos/carrito.png') }}" alt="Carrito" width="40" height="40">
+            <a href="{{ url_for('carrito_page') }}">
+                <img src="{{ url_for('static', filename='recursos/carrito.png') }}" alt="Carrito" width="40" height="40">
+            </a>
         </div>
         <div class="buttons-container">
-            <button class="category-button">Categorías</button>
+            <div class="dropdown">
+                <button class="category-button">Categorías</button>
+                <div class="dropdown-content">
+                    <a href="#">Hogar</a>
+                    <a href="#">Jardinería</a>
+                    <a href="#">Ropa</a>
+                    <a href="#">Tecnología</a>
+                    <a href="#">Herramientas</a>
+                </div>
+            </div>
             <a class="button-usuarios" href="{{ url_for('users_page') }}">Usuarios</a>
         </div>
         <a href="{{ url_for('login_page') }}" class="login-button">INICIAR SESIÓN</a>
@@ -32,20 +43,17 @@
 
     <!-- Contenido principal -->
     <main>
-        <h1>LOS MEJORES PRECIOS DEL MERCADO</h1>
-        <p>VISÍTANOS EN NUESTRAS REDES</p>
+        <h1 class="center-text">LOS MEJORES PRECIOS DEL MERCADO</h1>
     </main>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 CRIMASE. Todos los derechos reservados.</p>
         <div class="footer-columns">
             <div class="footer-section">
                 <h4>Redes Sociales</h4>
                 <a href="https://www.facebook.com/"><img src="{{ url_for('static', filename='recursos/facebook.png') }}" alt="Facebook" width="30" height="30"></a>
                 <a href="https://www.instagram.com/"><img src="{{ url_for('static', filename='recursos/instagram.png') }}" alt="Instagram" width="30" height="30"></a>
                 <a href="https://www.twitter.com/"><img src="{{ url_for('static', filename='recursos/twitter.png') }}" alt="Twitter" width="30" height="30"></a>
-                <a href="https://www.youtube.com/"><img src="{{ url_for('static', filename='recursos/youtube.png') }}" alt="YouTube" width="30" height="30"></a>
             </div>
             <div class="footer-section">
                 <h4>Categorías</h4>
@@ -67,6 +75,7 @@
                 <p>WhatsApp: +593 9856237001</p>
             </div>
         </div>
+        <p class="footer-copy">&copy; 2025 CRIMASE. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>
