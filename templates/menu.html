@@ -44,6 +44,33 @@
     <!-- Contenido principal -->
     <main>
         <h1 class="center-text">LOS MEJORES PRECIOS DEL MERCADO</h1>
+
+        <!-- Productos Destacados -->
+        <section class="featured-products">
+            <h2 class="center-text">Productos Destacados</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="{{ url_for('static', filename='recursos/producto1.jpg') }}" alt="Producto 1">
+                    <p>Producto 1</p>
+                    <p>$10.00</p>
+                </div>
+                <div class="product-item">
+                    <img src="{{ url_for('static', filename='recursos/producto2.jpg') }}" alt="Producto 2">
+                    <p>Producto 2</p>
+                    <p>$20.00</p>
+                </div>
+                <div class="product-item">
+                    <img src="{{ url_for('static', filename='recursos/producto3.jpg') }}" alt="Producto 3">
+                    <p>Producto 3</p>
+                    <p>$30.00</p>
+                </div>
+                <div class="product-item">
+                    <img src="{{ url_for('static', filename='recursos/producto4.jpg') }}" alt="Producto 4">
+                    <p>Producto 4</p>
+                    <p>$40.00</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->

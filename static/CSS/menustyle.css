@@ -131,6 +131,45 @@ nav {
     margin-top: 0px;  /* Espacio entre la barra de navegación y la imagen */
 }
 
+/* Centrar el texto principal */
+.center-text {
+    text-align: center;
+    margin-top: 20px; /* Ajusta este valor para controlar la distancia desde la imagen */
+}
+
+/* Productos Destacados */
+.featured-products {
+    padding: 20px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product-item p {
+    margin: 10px 0;
+}
+
 /* Footer */
 footer {
     background-color: #00bfff;
