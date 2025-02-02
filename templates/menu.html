@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRIMASE - Todo para tu mundo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/menustyle.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
@@ -26,16 +27,34 @@
             <div class="dropdown">
                 <button class="category-button">Categorías</button>
                 <div class="dropdown-content">
-                    <a href="#">Hogar</a>
-                    <a href="#">Jardinería</a>
-                    <a href="#">Ropa</a>
-                    <a href="#">Tecnología</a>
-                    <a href="#">Herramientas</a>
+                    <a href="{{ url_for('hogar_page') }}">Hogar</a>
+                    <a href="{{ url_for('jardineria_page') }}">Jardinería</a>
+                    <a href="{{ url_for('ropa_page') }}">Ropa</a>
+                    <a href="{{ url_for('tecnologia_page') }}">Tecnología</a>
+                    <a href="{{ url_for('herramientas_page') }}">Herramientas</a>
                 </div>
             </div>
             <a class="button-usuarios" href="{{ url_for('users_page') }}">Usuarios</a>
+            {% if session.user_logged_in %}
+                <div class="user-profile">
+                    <div class="user-menu">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-dropdown">
+                            <span class="username">{{ session.username }}</span>
+                            <a href="#"><i class="fas fa-user-circle"></i> Mi Perfil</a>
+                            <a href="#"><i class="fas fa-cog"></i> Configuración</a>
+                            <a href="{{ url_for('logout') }}" class="logout-button">
+                                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{{ url_for('login_page') }}" class="login-button">Iniciar Sesión</a>
+            {% endif %}
         </div>
-        <a href="{{ url_for('login_page') }}" class="login-button">INICIAR SESIÓN</a>
     </nav>
     
     <!-- Imagen debajo de la barra de navegación -->
@@ -131,7 +150,7 @@
                 <p>WhatsApp: +593 9856237001</p>
             </div>
         </div>
-        <p class="footer-copy">&copy; 2025 CRIMASE. Todos los derechos reservados.</p>
+        <p class="footer-copy">&copy; CRIMASE 2025. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>

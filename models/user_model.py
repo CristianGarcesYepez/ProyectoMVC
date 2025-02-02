@@ -12,11 +12,19 @@ class UsuarioModel:
         self.conexion.conectar()
 
     def validar_usuario(self, user_name, password):
-        cursor = self.conexion.connection.cursor(dictionary=True)
-        cursor.execute('SELECT * FROM usuarios WHERE nombre_usuario = %s AND clave_usuario = %s', (user_name, password))
-        user = cursor.fetchone()
-        cursor.close()
-        return user
+        try:
+            # Refrescar la conexión antes de la consulta
+            self.conexion.connection.ping(reconnect=True)
+            
+            cursor = self.conexion.connection.cursor(dictionary=True)
+            cursor.execute('SELECT id, nombre_usuario, rol, estado FROM usuarios WHERE nombre_usuario = %s AND clave_usuario = %s', (user_name, password))
+            user = cursor.fetchone()
+            cursor.close()
+            print(user)
+            return user
+        except Exception as e:
+            print(f"Error en validar_usuario: {e}")
+            return None
 
     def get_user_by_id(self, user_id):
         cursor = self.conexion.connection.cursor(dictionary=True)
@@ -27,6 +35,9 @@ class UsuarioModel:
 
     def obtener_todos(self):
         try:
+            # Refrescar la conexión antes de obtener los datos
+            self.conexion.connection.ping(reconnect=True)
+            
             cursor = self.conexion.connection.cursor(dictionary=True)
             cursor.execute("SELECT id, nombre, apellido, correo, nombre_usuario, clave_usuario, rol, estado FROM usuarios WHERE estado = '1'")
             usuarios = cursor.fetchall()
@@ -67,8 +78,11 @@ class UsuarioModel:
             self.conexion.connection.commit()
             cursor.close()
             print("Usuario eliminado exitosamente")
+            return True
         except Exception as e:
             print(f"Error al eliminar usuario: {e}")
+            return False
+
 
 
     def eliminar(self, usuario_id):

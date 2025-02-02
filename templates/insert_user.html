@@ -8,6 +8,8 @@
     <title>SIPN UP</title>
 </head>
 <body>
+    <input type="hidden" id="origin_page" value="{{ origin_page }}">
+    
     <h1>Registro Nuevo Usuario</h1>
     <h2>Por favor, ingrese los siguientes datos:</h2>
     <form action="/insert_user" method="POST">
@@ -35,10 +37,30 @@
             <input type="password" id="password" name="password" placeholder=" " required>
             <label for="password">Confirme la Contraseña</label>
         </div><br>
+        <div>
             <button class="btn-register" type="submit">Registrar</button>
         </div>
         <div>
-            <button class="btn-cancel" onclick="window.location.href='{{ url_for('login_page') }}'">Cancelar</button>
+            <button type="button" class="btn-cancel" onclick="cancelarRegistro()">Cancelar</button>
         </div>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Página de origen:', document.getElementById('origin_page').value);
+        });
+
+        function cancelarRegistro() {
+            const originPage = document.getElementById('origin_page').value;
+            console.log('Cancelando registro, origen:', originPage);
+            
+            if (originPage === 'login') {
+                window.location.href = "{{ url_for('login_page') }}";
+            } else if (originPage === 'users') {
+                window.location.href = "{{ url_for('users_page') }}";
+            } else {
+                window.location.href = "{{ url_for('login_page') }}";
+            }
+        }
+    </script>
 </body>

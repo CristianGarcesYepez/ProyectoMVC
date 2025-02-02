@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
     <!-- Contenedor principal para el formulario de inicio de sesión -->
     <div class="login-container">
         <!-- Imagen logo-->
@@ -19,7 +29,7 @@
         <div class="login-titulo">
             <h2>INICIO SESIÓN</h2>
         <!-- Formulario para capturar datos de usuario -->
-        <form action="{{ url_for('dashboard') }}" method="POST">
+        <form action="{{ url_for('login_page') }}" method="POST">
             <!-- Grupo de entrada para el nombre de usuario -->
             <div class="input-group">
                 <input type="text" id="username" name="username" placeholder="Username" required>
@@ -46,9 +56,22 @@
                     <a href="#"><i class="fab fa-google"></i></a>  
                 <p>O</p>
                 <!-- Enlace para registrarse -->
-                <a href="{{url_for('register_page')}}" method="GET" class="signup-link">SIGN UP</a>
+                <a href="{{ url_for('register_page', origin='login') }}" method="GET" class="signup-link">SIGN UP</a>
             </div>
         </form>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                setTimeout(() => {
+                    alert.classList.add('fade-out');
+                    setTimeout(() => {
+                        alert.remove();
+                    }, 500);
+                }, 3000);
+            });
+        });
+    </script>
 </body>
 </html>

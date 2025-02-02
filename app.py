@@ -1,44 +1,97 @@
-import os
 from flask import Flask, render_template, request, url_for, redirect, flash, session
+from controllers.login_controller import AuthController
 from controllers.user_controller import UsuarioController
 from models.user_model import UsuarioModel
-from controllers.login_controller import AuthController
+from functools import wraps
 
 app = Flask(__name__, static_folder='static')
+app.secret_key = "tu_clave_secreta_aqui"
 
-app.secret_key = "mi_clave_secreta_unica_y_segura"
-
-# Instancia del controlador
+# Instancias de controladores
+auth_controller = AuthController()
 user_controller = UsuarioController()
 user_model = UsuarioModel()
 
-@app.after_request
-def add_header(response):
-    response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
-    response.headers["Pragma"] = "no-cache"
-    response.headers["Expires"] = "0"
-    return response
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not auth_controller.check_session():
+            flash('Por favor inicie sesión para acceder', 'error')
+            return redirect(url_for('login_page'))
+        return f(*args, **kwargs)
+    return decorated_function
 
-@app.route("/", methods=["GET", "POST"])
-def first_page():
-    return render_template("menu.html")
+@app.route("/", methods=["GET"])
+def index():
+    return redirect(url_for('login_page'))
 
 @app.route("/login", methods=["GET", "POST"])
 def login_page():
+    if request.method == "POST":
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        success, message = auth_controller.login(username, password)
+        
+        if success:
+            flash(message, 'success')
+            return redirect(url_for('home_page'))
+        else:
+            flash(message, 'error')
+            return redirect(url_for('login_page'))
+            
     return render_template("login.html")
 
-@app.route("/home", methods=["GET", "POST"])
+# Solo una ruta para home_page
+@app.route("/home")
+@login_required
 def home_page():
     return render_template("menu.html")
 
-@app.route("/users", methods=["GET"])
+@app.route("/users")
+@login_required
 def users_page():
     usuarios = user_model.obtener_todos()
     return render_template("user.html", usuarios=usuarios)
 
-@app.route("/register", methods=["GET", "POST"])
+@app.route('/logout')
+def logout():
+    success, message = auth_controller.logout()
+    flash(message, 'success' if success else 'error')
+    return redirect(url_for('login_page'))
+
+# Rutas adicionales para las páginas de categorías
+@app.route("/hogar")
+def hogar_page():
+    return render_template("hogar.html")
+
+@app.route("/jardineria")
+def jardineria_page():
+    return render_template("jardineria.html")
+
+@app.route("/ropa")
+def ropa_page():
+    return render_template("ropa.html")
+
+@app.route("/tecnologia")
+def tecnologia_page():
+    return render_template("tecnologia.html")
+
+@app.route("/herramientas")
+def herramientas_page():
+    return render_template("herramientas.html")
+
+@app.route("/carrito")
+@login_required
+def carrito_page():
+    return render_template("carrito.html")
+
+@app.route("/register", methods=["GET"])
 def register_page():
-    return render_template("insert_user.html")
+    # Obtener la página de origen desde el parámetro de consulta
+    origin = request.args.get('origin', 'login')  # 'login' es el valor por defecto
+    print(f"Página de origen: {origin}")  # Debug log
+    return render_template('insert_user.html', origin_page=origin)
 
 @app.route("/insert_user", methods=["POST"])
 def insert_user():
@@ -91,63 +144,22 @@ def update_user(user_id):
             flash(f"Error al actualizar usuario: {str(e)}", "error")
             return redirect(url_for("update_user", user_id=user_id))
 
-
 @app.route('/usuarios/eliminar/<int:user_id>', methods=['GET', 'POST'])
 def eliminar_usuario(user_id):
-    # Lógica para actualizar el estado del usuario a inactivo en la base de datos
-    exito = user_model.eliminar_logico(user_id)  # Cambiar estado a 0 (inactivo)
-
-    if exito:
-        flash(f'Usuario {id} eliminado exitosamente', 'success')
-    else:
-        flash(f'Error al eliminar el usuario {id}', 'error')
-
-    return redirect(url_for('users_page'))  # Redirige a la página donde se listan los usuarios
-
-#-------------------LOGIN-------------------
-@app.route("/dashboard", methods=["GET", "POST"])
-def dashboard():
-    if request.method == "POST":
-        # Obtén los datos enviados desde el formulario
-        username = request.form.get("username")
-        password = request.form.get("password")
-
-        authcontroller = AuthController()
-        # Llama al controlador para manejar la lógica
-        return authcontroller.login(username, password)
-
-    # Si es un GET, envia al menu principal
-    return render_template("menu.html")
+    try:
+        user_controller.eliminar_usuario(user_id)
+        flash('Usuario eliminado exitosamente', 'success')
+        app.run(debug=True)
+        return redirect(url_for('users_page'))
+    except Exception as e:
+        flash(f'Error al eliminar el usuario: {str(e)}', 'error')
+        return redirect(url_for('users_page'))
 
 @app.route("/search", methods=["GET"])
 def search():
     query = request.args.get('query')
     # Aquí puedes agregar la lógica para manejar la búsqueda
     return render_template("search_results.html", query=query)
-
-@app.route("/hogar.html")
-def hogar_page():
-    return render_template("hogar.html")
-
-@app.route("/jardineria.html")
-def jardineria_page():
-    return render_template("jardineria.html")
-
-@app.route("/ropa.html")
-def ropa_page():
-    return render_template("ropa.html")
-
-@app.route("/tecnologia.html")
-def tecnologia_page():
-    return render_template("tecnologia.html")
-
-@app.route("/herramientas.html")
-def herramientas_page():
-    return render_template("herramientas.html")
-
-@app.route("/carrito")
-def carrito_page():
-    return render_template("carrito.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

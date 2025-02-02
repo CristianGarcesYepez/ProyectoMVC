@@ -12,23 +12,30 @@ class ConexionDB:
         self.user = user
         self.password = password
         self.database = database
-        self.connection = None  # Initialize the connection attribute as None
-        # This will store the database connection object once established
+        self.connection = None
 
     def conectar(self):
         try:
+            # Cerrar conexión existente si hay una
+            if self.connection and self.connection.is_connected():
+                self.connection.close()
+                
             self.connection = mysql.connector.connect(
                 host=self.host,
                 user=self.user,
                 password=self.password,
-                database=self.database
+                database=self.database,
+                autocommit=True
             )
-            print("Conexión exitosa")
         except mysql.connector.Error as err:
             print(f"Error al conectar: {err}")
 
+    def obtener_conexion(self):
+        if not self.connection or not self.connection.is_connected():
+            self.conectar()
+        return self.connection
+
     def cerrar(self):
-        if self.connection:
+        if self.connection and self.connection.is_connected():
             self.connection.close()
-            print("Conexión cerrada")
 
