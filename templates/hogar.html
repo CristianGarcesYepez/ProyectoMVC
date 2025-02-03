@@ -7,27 +7,152 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/hogarstyle.css') }}" type="text/css">
 </head>
 <body>
-    <main>
-        <h1>Productos para el Hogar</h1>
-        <section class="productos">
-            <article class="producto">
-                <img src="{{ url_for('static', filename='images/producto1.jpg') }}" alt="Producto 1">
-                <h2>Licuadora clásica Oster® cromada con perilla ergonómica de 3 velocidades BLST4655</h2>
-                <p>Las licuadoras Oster® son reconocidas por su eficiencia y durabilidad. Ahora, la licuadora clásica Oster® en cromo, reinventada y modernizada con perilla, te brinda una experiencia aún mejor. Su potente motor seis veces más duradero** con 1000 W de potencia**** te ayuda a preparar deliciosas y saludables recetas. Tiene un novedoso diseño y sus controles son ergonómicos.
-                </p>
-                <p>Precio: $90.00</p>
-            </article>
-            <article class="producto">
-                <img src="{{ url_for('static', filename='images/producto2.jpg') }}" alt="Producto 2">
-                <h2>Sanduchera Panini 25440</h2>
-                <p>Negro Proctor Silex</p>
-                <p>Precio: $39.00</p>
-            </article>
-            <!-- Agrega más productos según sea necesario -->
+    <!-- Barra de navegación -->
+    <nav>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="Logo" width="200" height="200">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar...">
+            <button type="submit">
+                <img src="{{ url_for('static', filename='recursos/lupa.jpg') }}" alt="Buscar" width="20">
+            </button>
+        </div>
+        <div class="cart-icon">
+            <a href="{{ url_for('carrito_page') }}">
+                <img src="{{ url_for('static', filename='recursos/carrito.png') }}" alt="Carrito" width="40" height="40">
+            </a>
+        </div>
+        <div class="user-dropdown">
+            <span class="username">{{ session.username }}</span>
+            <a href="#"><i class="fas fa-user-circle"></i> Mi Perfil</a>
+            <a href="#"><i class="fas fa-cog"></i> Configuración</a>
+            <a href="{{ url_for('logout') }}" class="logout-button">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </a>
+        </div>
+    </nav>
+
+    <header>
+        <section class="category-banner">
+            <h1>HOGAR</h1>
         </section>
-    </main>
+        <div class="filters-container">
+            <h2>Filtros</h2>
+            <button type="button" onclick="toggleFilters()">
+                <img src="{{ url_for('static', filename='recursos/filtros.png') }}" alt="filtros" width="20">
+            </button>
+        </div>
+    </header>
+
+    <aside class="filters">
+        <div class="filter-options" id="filter-options">
+            <div>
+                <label for="price-range">Precio:</label>
+                <input type="range" id="price-range" name="price-range" min="0" max="1000">
+            </div>
+            <div>
+                <label for="featured">Destacado:</label>
+                <select id="featured" name="featured">
+                    <option value="yes">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+        </div>
+    </aside>
+
+    <section class="featured-products">
+        <div class="product-grid">
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/producto1.jpg') }}" alt="Producto 1">
+                <p>Licuadora clásica Oster®</p>
+                <p>$90.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/producto2.jpg') }}" alt="Producto 2">
+                <p>Sanduchera Panini 25440</p>
+                <p>$39.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/copa.jpeg') }}" alt="copa">
+                <p>Copa de Vidrio</p>
+                <p>$3.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/cervecera.jpeg') }}" alt="cervecera">
+                <p>Copa Cervecera Amber</p>
+                <p>$2.50</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/cojin.jpeg') }}" alt="cojín">
+                <p>Forros + Cojín Relleno / Tela Galleta</p>
+                <p>$7.50</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/afelpados.jpeg') }}" alt="afelpados">
+                <p>Forros + Cojín Relleno / Afelpados</p>
+                <p>$7.50</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/alfombra.jpeg') }}" alt="alfombra">
+                <p>Alfombra de Cocina</p>
+                <p>$6.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/baño.jpeg') }}" alt="baño">
+                <p>Set de Baño Completo</p>
+                <p>$12.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/comedor.jpeg') }}" alt="comedor">
+                <p>Set de Comedor 1 mantel + 6 forros de sillas</p>
+                <p>$21.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/cortina.jpeg') }}" alt="cortina">
+                <p>Cortina Satinada con diseño/labrado</p>
+                <p>$15.00</p>
+            </div>
+
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2025 Venta de Artículos. Todos los derechos reservados.</p>
+        <div class="footer-columns">
+            <div class="footer-section">
+                <h4>Redes Sociales</h4>
+                <a href="https://www.facebook.com/"><img src="{{ url_for('static', filename='recursos/facebook.png') }}" alt="Facebook" width="30" height="30"></a>
+                <a href="https://www.instagram.com/"><img src="{{ url_for('static', filename='recursos/instagram.png') }}" alt="Instagram" width="30" height="30"></a>
+                <a href="https://www.twitter.com/"><img src="{{ url_for('static', filename='recursos/twitter.png') }}" alt="Twitter" width="30" height="30"></a>
+            </div>
+            <div class="footer-section">
+                <h4>Categorías</h4>
+                <a href="#">Hogar</a>
+                <a href="#">Jardinería</a>
+                <a href="#">Ropa</a>
+                <a href="#">Tecnología</a>
+                <a href="#">Herramientas</a>
+            </div>
+            <div class="footer-section">
+                <h4>Nosotros</h4>
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Política de Cookies</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Teléf: (04)-4536937</p>
+                <p>WhatsApp: +593 9856237001</p>
+            </div>
+        </div>
+        <p class="footer-copy">&copy; CRIMASE 2025. Todos los derechos reservados.</p>
     </footer>
+    <script>
+        function toggleFilters() {
+            const filterOptions = document.getElementById('filter-options');
+            filterOptions.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
+
