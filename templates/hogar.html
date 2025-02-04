@@ -23,19 +23,46 @@
                 <img src="{{ url_for('static', filename='recursos/carrito.png') }}" alt="Carrito" width="40" height="40">
             </a>
         </div>
-        <div class="user-dropdown">
-            <span class="username">{{ session.username }}</span>
-            <a href="#"><i class="fas fa-user-circle"></i> Mi Perfil</a>
-            <a href="#"><i class="fas fa-cog"></i> Configuración</a>
-            <a href="{{ url_for('logout') }}" class="logout-button">
-                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-            </a>
+        <div class="buttons-container">
+            <div class="dropdown">
+                <button class="category-button">Categorías</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('hogar_page') }}">Hogar</a>
+                    <a href="{{ url_for('jardineria_page') }}">Jardinería</a>
+                    <a href="{{ url_for('ropa_page') }}">Ropa</a>
+                    <a href="{{ url_for('tecnologia_page') }}">Tecnología</a>
+                    <a href="{{ url_for('herramientas_page') }}">Herramientas</a>
+                </div>
+            </div>
+            <a class="button-usuarios" href="{{ url_for('users_page') }}">Usuarios</a>
+            {% if session.user_logged_in %}
+                <div class="user-profile">
+                    <div class="user-menu">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-dropdown">
+                            <span class="username">{{ session.username }}</span>
+                            <a href="#"><i class="fas fa-user-circle"></i> Mi Perfil</a>
+                            <a href="#"><i class="fas fa-cog"></i> Configuración</a>
+                            <a href="{{ url_for('logout') }}" class="logout-button">
+                                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{{ url_for('login_page') }}" class="login-button">Iniciar Sesión</a>
+            {% endif %}
         </div>
     </nav>
 
     <header>
         <section class="category-banner">
-            <h1>HOGAR</h1>
+            <div class="banner-content">
+                <h1>HOGAR</h1>
+                <img src="{{ url_for('static', filename='recursos/hogar.png') }}" alt="Descripción de la imagen" class="navbar-image" width="950"  height="212">      
+            </div>
         </section>
         <div class="filters-container">
             <h2>Filtros</h2>
@@ -44,7 +71,6 @@
             </button>
         </div>
     </header>
-
     <aside class="filters">
         <div class="filter-options" id="filter-options">
             <div>
@@ -116,7 +142,6 @@
 
         </div>
     </section>
-
     <footer>
         <div class="footer-columns">
             <div class="footer-section">
@@ -155,4 +180,3 @@
     </script>
 </body>
 </html>
-

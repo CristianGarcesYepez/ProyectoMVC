@@ -3,30 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos de Jardinería</title>
+    <title>Productos para el Hogar</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/jardineriastyle.css') }}" type="text/css">
 </head>
 <body>
-    <main>
-        <h1>Productos de Jardinería</h1>
-        <section class="productos">
-            <article class="producto">
-                <img src="{{ url_for('static', filename='images/producto1.jpg') }}" alt="Producto 1">
-                <h2>Producto 1</h2>
-                <p>Descripción del producto 1.</p>
-                <p>Precio: $15.00</p>
-            </article>
-            <article class="producto">
-                <img src="{{ url_for('static', filename='images/producto2.jpg') }}" alt="Producto 2">
-                <h2>Producto 2</h2>
-                <p>Descripción del producto 2.</p>
-                <p>Precio: $25.00</p>
-            </article>
-            <!-- Agrega más productos según sea necesario -->
+    <!-- Barra de navegación -->
+    <nav>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="Logo" width="200" height="200">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar...">
+            <button type="submit">
+                <img src="{{ url_for('static', filename='recursos/lupa.jpg') }}" alt="Buscar" width="20">
+            </button>
+        </div>
+        <div class="cart-icon">
+            <a href="{{ url_for('carrito_page') }}">
+                <img src="{{ url_for('static', filename='recursos/carrito.png') }}" alt="Carrito" width="40" height="40">
+            </a>
+        </div>
+        <div class="buttons-container">
+            <div class="dropdown">
+                <button class="category-button">Categorías</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('hogar_page') }}">Hogar</a>
+                    <a href="{{ url_for('jardineria_page') }}">Jardinería</a>
+                    <a href="{{ url_for('ropa_page') }}">Ropa</a>
+                    <a href="{{ url_for('tecnologia_page') }}">Tecnología</a>
+                    <a href="{{ url_for('herramientas_page') }}">Herramientas</a>
+                </div>
+            </div>
+            <a class="button-usuarios" href="{{ url_for('users_page') }}">Usuarios</a>
+            {% if session.user_logged_in %}
+                <div class="user-profile">
+                    <div class="user-menu">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-dropdown">
+                            <span class="username">{{ session.username }}</span>
+                            <a href="#"><i class="fas fa-user-circle"></i> Mi Perfil</a>
+                            <a href="#"><i class="fas fa-cog"></i> Configuración</a>
+                            <a href="{{ url_for('logout') }}" class="logout-button">
+                                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{{ url_for('login_page') }}" class="login-button">Iniciar Sesión</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <header>
+        <section class="category-banner">
+            <div class="banner-content">
+                <h1>Jardinería</h1>
+                <img src="{{ url_for('static', filename='recursos/jardineria.png') }}" alt="Descripción de la imagen" class="navbar-image" width="900"  height="212">      
+            </div>
         </section>
-    </main>
+        <div class="filters-container">
+            <h2>Filtros</h2>
+            <button type="button" onclick="toggleFilters()">
+                <img src="{{ url_for('static', filename='recursos/filtros.png') }}" alt="filtros" width="20">
+            </button>
+        </div>
+    </header>
+    <aside class="filters">
+        <div class="filter-options" id="filter-options">
+            <div>
+                <label for="price-range">Precio:</label>
+                <input type="range" id="price-range" name="price-range" min="0" max="1000">
+            </div>
+            <div>
+                <label for="featured">Destacado:</label>
+                <select id="featured" name="featured">
+                    <option value="yes">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+        </div>
+    </aside>
+
+    <section class="featured-products">
+        <div class="product-grid">
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/truper.jpg') }}" alt="truper">
+                <p>Mini Juego de Herramientas 4 Piezas 6 Pulg. TRUPER</p>
+                <p>$20.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/producto8.jpg') }}" alt="Producto 8">
+                <p>Cortasetos eléctrico BLACK + DECKER BEHTS401-QS 500W 55 cm cuchilla</p>
+                <p>$85.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/producto7.jpg') }}" alt="Producto 7">
+                <p>Enredadera Tupida Jacinto Del Agua Jardín Vertical 40x60cm</p>
+                <p>$5.00 c/u</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/cuchara.jpg') }}" alt="cervecera">
+                <p>Cuchara para Jardin de 6 pulg.</p>
+                <p>$5.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/cortagrama.jpg') }}" alt="cortagrama">
+                <p>Tijera Cortagrama</p>
+                <p>$10.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/rociador.jpg') }}" alt="rociador">
+                <p>Rociador de Jardín</p>
+                <p>$6.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/cultivadora.jpg') }}" alt="cultivadora">
+                <p>Cultivadora de Jardín de 4 Pulg.</p>
+                <p>$5.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/tijera.jpg') }}" alt="tijera">
+                <p>Tijera Industrial para podar</p>
+                <p>$12.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/portamanguera.jpg') }}" alt="portamanguera">
+                <p>Porta Manguera</p>
+                <p>$20.00</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='recursos/motosierra.jpg') }}" alt="motosierra">
+                <p>Motosierra de Gasolina de 20 Pulg.</p>
+                <p>$400.00</p>
+            </div>
+
+        </div>
+    </section>
     <footer>
-        <p>&copy; 2025 Venta de Artículos. Todos los derechos reservados.</p>
+        <div class="footer-columns">
+            <div class="footer-section">
+                <h4>Redes Sociales</h4>
+                <a href="https://www.facebook.com/"><img src="{{ url_for('static', filename='recursos/facebook.png') }}" alt="Facebook" width="30" height="30"></a>
+                <a href="https://www.instagram.com/"><img src="{{ url_for('static', filename='recursos/instagram.png') }}" alt="Instagram" width="30" height="30"></a>
+                <a href="https://www.twitter.com/"><img src="{{ url_for('static', filename='recursos/twitter.png') }}" alt="Twitter" width="30" height="30"></a>
+            </div>
+            <div class="footer-section">
+                <h4>Categorías</h4>
+                <a href="#">Hogar</a>
+                <a href="#">Jardinería</a>
+                <a href="#">Ropa</a>
+                <a href="#">Tecnología</a>
+                <a href="#">Herramientas</a>
+            </div>
+            <div class="footer-section">
+                <h4>Nosotros</h4>
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Política de Cookies</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Teléf: (04)-4536937</p>
+                <p>WhatsApp: +593 9856237001</p>
+            </div>
+        </div>
+        <p class="footer-copy">&copy; CRIMASE 2025. Todos los derechos reservados.</p>
     </footer>
+    <script>
+        function toggleFilters() {
+            const filterOptions = document.getElementById('filter-options');
+            filterOptions.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

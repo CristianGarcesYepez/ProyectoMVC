@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/carritostyle.css') }}" type="text/css">
+</head>
+<body>
+    <header>
+        <h1>Carrito de Compras</h1>
+    </header>
+    <main>
+        <form action="{{ url_for('procesar_compra') }}" method="POST">
+            <div class="cart-item">
+                <img src="{{ url_for('static', filename='recursos/producto1.jpg') }}" alt="Producto 1" width="100">
+                <div class="item-details">
+                    <h2>Licuadora clásica Oster®</h2>
+                    <p>Precio: $90.00</p>
+                    <label for="cantidad1">Cantidad:</label>
+                    <input type="number" id="cantidad1" name="cantidad1" value="1" min="1">
+                </div>
+            </div>
+            <div class="cart-item">
+                <img src="{{ url_for('static', filename='recursos/producto2.jpg') }}" alt="Producto 2" width="100">
+                <div class="item-details">
+                    <h2>Sanduchera Panini 25440</h2>
+                    <p>Precio: $39.00</p>
+                    <label for="cantidad2">Cantidad:</label>
+                    <input type="number" id="cantidad2" name="cantidad2" value="1" min="1">
+                </div>
+            </div>
+            <div class="cart-item">
+                <img src="{{ url_for('static', filename='recursos/producto3.jpg') }}" alt="Producto 3" width="100">
+                <div class="item-details">
+                    <h2>Computadora Laptop De 14 Pulgadas Pantalla 4K 64Gb De Memoria Cromada 14 Pulgadas Rca</h2>
+                    <p>Precio: $299.00</p>
+                    <label for="cantidad3">Cantidad:</label>
+                    <input type="number" id="cantidad3" name="cantidad3" value="1" min="1">
+                </div>
+            </div>
+            <div class="total">
+                <h2>Total: $428.00</h2>
+            </div>
+            <button type="submit">Comprar</button>
+        </form>
+    </main>
+</body>
+</html>
