@@ -49,7 +49,7 @@
         <label for="status">Estado:</label>
         <div class="status-container">
             <input class="status" type="text" id="status" name="status" value="{{ usuarios.Estado }}" readonly>
-            <p id="status" name="status">{{ 'Activo' if usuarios.Estado == 1 else 'Inactivo' }}</p><br><br>
+            <p id="status" name="status"><strong>{{ 'Activo' if usuarios.Estado == '1' else 'Inactivo' }}</strong></p><br><br>
         </div>
         <div>
             <button class="btn-update" type="submit">Actualizar</button>

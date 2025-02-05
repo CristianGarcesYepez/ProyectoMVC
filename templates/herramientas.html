@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos para el Hogar</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/herramientastyle.css') }}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <!-- Barra de navegación -->
     <nav>
         <div class="logo">
-            <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="Logo" width="200" height="200">
+            <a href="{{ url_for('home_page') }}" method="GET">
+                <img src="{{ url_for('static', filename='recursos/CRIMASE.png') }}" alt="Logo" width="200" height="200">
+            </a>
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Buscar...">
