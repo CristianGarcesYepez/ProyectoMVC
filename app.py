@@ -86,6 +86,12 @@ def herramientas_page():
 def carrito_page():
     return render_template("carrito.html")
 
+@app.route("/procesar_compra", methods=['POST'])
+@login_required
+def procesar_compra():
+    # Lógica para procesar la compra
+    return "Compra procesada"
+
 @app.route("/register", methods=["GET"])
 def register_page():
     # Obtener la página de origen desde el parámetro de consulta
